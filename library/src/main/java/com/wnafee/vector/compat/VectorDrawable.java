@@ -347,23 +347,23 @@ public class VectorDrawable extends DrawableCompat implements Tintable{
         //TODO: will not support drawable theming yet (applies to tinting mainly)
         //state.mThemeAttrs = a.extractThemeAttrs();
 
-        final int tintMode = a.getInt(R.styleable.VectorDrawable_tintMode, -1);
+        final int tintMode = a.getInt(R.styleable.VectorDrawable_vc_tintMode, -1);
         if (tintMode != -1) {
             state.mTintMode = parseTintMode(tintMode, Mode.SRC_IN);
         }
 
-        final ColorStateList tint = a.getColorStateList(R.styleable.VectorDrawable_tint);
+        final ColorStateList tint = a.getColorStateList(R.styleable.VectorDrawable_vc_tint);
         if (tint != null) {
             state.mTint = tint;
         }
 
         state.mAutoMirrored = a.getBoolean(
-                R.styleable.VectorDrawable_autoMirrored, state.mAutoMirrored);
+                R.styleable.VectorDrawable_vc_autoMirrored, state.mAutoMirrored);
 
         pathRenderer.mViewportWidth = a.getFloat(
-                R.styleable.VectorDrawable_viewportWidth, pathRenderer.mViewportWidth);
+                R.styleable.VectorDrawable_vc_viewportWidth, pathRenderer.mViewportWidth);
         pathRenderer.mViewportHeight = a.getFloat(
-                R.styleable.VectorDrawable_viewportHeight, pathRenderer.mViewportHeight);
+                R.styleable.VectorDrawable_vc_viewportHeight, pathRenderer.mViewportHeight);
 
         if (pathRenderer.mViewportWidth <= 0) {
             throw new XmlPullParserException(a.getPositionDescription() +
@@ -374,9 +374,9 @@ public class VectorDrawable extends DrawableCompat implements Tintable{
         }
 
         pathRenderer.mBaseWidth = a.getDimension(
-                R.styleable.VectorDrawable_width, pathRenderer.mBaseWidth);
+                R.styleable.VectorDrawable_android_width, pathRenderer.mBaseWidth);
         pathRenderer.mBaseHeight = a.getDimension(
-                R.styleable.VectorDrawable_height, pathRenderer.mBaseHeight);
+                R.styleable.VectorDrawable_android_height, pathRenderer.mBaseHeight);
 
         if (pathRenderer.mBaseWidth <= 0) {
             throw new XmlPullParserException(a.getPositionDescription() +
@@ -386,11 +386,11 @@ public class VectorDrawable extends DrawableCompat implements Tintable{
                     "<menu_vector> tag requires height > 0");
         }
 
-        final float alphaInFloat = a.getFloat(R.styleable.VectorDrawable_alpha,
+        final float alphaInFloat = a.getFloat(R.styleable.VectorDrawable_android_alpha,
                 pathRenderer.getAlpha());
         pathRenderer.setAlpha(alphaInFloat);
 
-        final String name = a.getString(R.styleable.VectorDrawable_name);
+        final String name = a.getString(R.styleable.VectorDrawable_android_name);
         if (name != null) {
             pathRenderer.mRootName = name;
             pathRenderer.mVGTargetsMap.put(name, pathRenderer);
@@ -995,15 +995,15 @@ public class VectorDrawable extends DrawableCompat implements Tintable{
             //TODO
 //            mThemeAttrs = a.extractThemeAttrs();
 
-            mRotate = a.getFloat(R.styleable.VectorDrawableGroup_rotation, mRotate);
-            mPivotX = a.getFloat(R.styleable.VectorDrawableGroup_pivotX, mPivotX);
-            mPivotY = a.getFloat(R.styleable.VectorDrawableGroup_pivotY, mPivotY);
-            mScaleX = a.getFloat(R.styleable.VectorDrawableGroup_scaleX, mScaleX);
-            mScaleY = a.getFloat(R.styleable.VectorDrawableGroup_scaleY, mScaleY);
-            mTranslateX = a.getFloat(R.styleable.VectorDrawableGroup_translateX, mTranslateX);
-            mTranslateY = a.getFloat(R.styleable.VectorDrawableGroup_translateY, mTranslateY);
+            mRotate = a.getFloat(R.styleable.VectorDrawableGroup_android_rotation, mRotate);
+            mPivotX = a.getFloat(R.styleable.VectorDrawableGroup_android_pivotX, mPivotX);
+            mPivotY = a.getFloat(R.styleable.VectorDrawableGroup_android_pivotY, mPivotY);
+            mScaleX = a.getFloat(R.styleable.VectorDrawableGroup_android_scaleX, mScaleX);
+            mScaleY = a.getFloat(R.styleable.VectorDrawableGroup_android_scaleY, mScaleY);
+            mTranslateX = a.getFloat(R.styleable.VectorDrawableGroup_vc_translateX, mTranslateX);
+            mTranslateY = a.getFloat(R.styleable.VectorDrawableGroup_vc_translateY, mTranslateY);
 
-            final String groupName = a.getString(R.styleable.VectorDrawableGroup_name);
+            final String groupName = a.getString(R.styleable.VectorDrawableGroup_android_name);
             if (groupName != null) {
                 mGroupName = groupName;
             }
@@ -1209,12 +1209,12 @@ public class VectorDrawable extends DrawableCompat implements Tintable{
             // Account for any configuration changes.
             mChangingConfigurations |= getChangingConfigurations(a);
 
-            final String pathName = a.getString(R.styleable.VectorDrawableClipPath_name);
+            final String pathName = a.getString(R.styleable.VectorDrawableClipPath_android_name);
             if (pathName != null) {
                 mPathName = pathName;
             }
 
-            final String pathData = a.getString(R.styleable.VectorDrawableClipPath_pathData);
+            final String pathData = a.getString(R.styleable.VectorDrawableClipPath_vc_pathData);
             if (pathData != null) {
                 mNodes = PathParser.createNodesFromPathData(pathData);
             }
@@ -1318,27 +1318,27 @@ public class VectorDrawable extends DrawableCompat implements Tintable{
             //TODO: will not support drawable theming yet (applies to tinting mainly)
             //mThemeAttrs = a.extractThemeAttrs();
 
-            final String pathName = a.getString(R.styleable.VectorDrawablePath_name);
+            final String pathName = a.getString(R.styleable.VectorDrawablePath_android_name);
             if (pathName != null) {
                 mPathName = pathName;
             }
 
-            final String pathData = a.getString(R.styleable.VectorDrawablePath_pathData);
+            final String pathData = a.getString(R.styleable.VectorDrawablePath_vc_pathData);
             if (pathData != null) {
                 mNodes = PathParser.createNodesFromPathData(pathData);
             }
 
-            mFillColor = a.getColor(R.styleable.VectorDrawablePath_fillColor, mFillColor);
-            mFillAlpha = a.getFloat(R.styleable.VectorDrawablePath_fillAlpha, mFillAlpha);
-            mStrokeLineCap = getStrokeLineCap(a.getInt(R.styleable.VectorDrawablePath_strokeLineCap, -1), mStrokeLineCap);
-            mStrokeLineJoin = getStrokeLineJoin(a.getInt(R.styleable.VectorDrawablePath_strokeLineJoin, -1), mStrokeLineJoin);
-            mStrokeMiterlimit = a.getFloat(R.styleable.VectorDrawablePath_strokeMiterLimit, mStrokeMiterlimit);
-            mStrokeColor = a.getColor(R.styleable.VectorDrawablePath_strokeColor, mStrokeColor);
-            mStrokeAlpha = a.getFloat(R.styleable.VectorDrawablePath_strokeAlpha, mStrokeAlpha);
-            mStrokeWidth = a.getFloat(R.styleable.VectorDrawablePath_strokeWidth, mStrokeWidth);
-            mTrimPathEnd = a.getFloat(R.styleable.VectorDrawablePath_trimPathEnd, mTrimPathEnd);
-            mTrimPathOffset = a.getFloat(R.styleable.VectorDrawablePath_trimPathOffset, mTrimPathOffset);
-            mTrimPathStart = a.getFloat(R.styleable.VectorDrawablePath_trimPathStart, mTrimPathStart);
+            mFillColor = a.getColor(R.styleable.VectorDrawablePath_vc_fillColor, mFillColor);
+            mFillAlpha = a.getFloat(R.styleable.VectorDrawablePath_vc_fillAlpha, mFillAlpha);
+            mStrokeLineCap = getStrokeLineCap(a.getInt(R.styleable.VectorDrawablePath_vc_strokeLineCap, -1), mStrokeLineCap);
+            mStrokeLineJoin = getStrokeLineJoin(a.getInt(R.styleable.VectorDrawablePath_vc_strokeLineJoin, -1), mStrokeLineJoin);
+            mStrokeMiterlimit = a.getFloat(R.styleable.VectorDrawablePath_vc_strokeMiterLimit, mStrokeMiterlimit);
+            mStrokeColor = a.getColor(R.styleable.VectorDrawablePath_vc_strokeColor, mStrokeColor);
+            mStrokeAlpha = a.getFloat(R.styleable.VectorDrawablePath_vc_strokeAlpha, mStrokeAlpha);
+            mStrokeWidth = a.getFloat(R.styleable.VectorDrawablePath_vc_strokeWidth, mStrokeWidth);
+            mTrimPathEnd = a.getFloat(R.styleable.VectorDrawablePath_vc_trimPathEnd, mTrimPathEnd);
+            mTrimPathOffset = a.getFloat(R.styleable.VectorDrawablePath_vc_trimPathOffset, mTrimPathOffset);
+            mTrimPathStart = a.getFloat(R.styleable.VectorDrawablePath_vc_trimPathStart, mTrimPathStart);
         }
 
         @Override
